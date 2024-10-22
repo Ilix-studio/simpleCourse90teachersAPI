@@ -12,6 +12,8 @@ import {
 } from "../controllers/questionController.js";
 const router = express.Router();
 
+// api http://localhost:5000/api/teachers/
+
 //General Question ROutes
 router.get("/get-generalQ", getGeneralQuestions);
 router.post("/create-generalQuestions", createGeneralQuestions);

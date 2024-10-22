@@ -42,16 +42,14 @@ const addMCQforGQ = asyncHandler(async (req, res) => {
 });
 
 const getGeneralQuestions = asyncHandler(async (req, res) => {
-  const allQuestions = await QuestionSet.findById(req.params.id).polulate(
-    "questionSet"
-  );
+  const allQuestions = await QuestionSet.find({});
   if (!allQuestions) {
     res.status(500).json({
       message: "Server Error",
     });
   }
   res.status(200).json({
-    message: "MCQ added ",
+    message: "Fetch Successfull ",
     data: allQuestions,
   });
 });

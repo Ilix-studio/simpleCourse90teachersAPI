@@ -1,1 +1,1 @@
-const allowOrigins = ["http://localhost:5173"];
+export const allowOrigins = ["http://localhost:5173"];

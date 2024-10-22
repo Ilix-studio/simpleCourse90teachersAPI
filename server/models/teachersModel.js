@@ -5,14 +5,14 @@ const mcqSchema = mongoose.Schema({
     type: String,
     required: true,
   },
-  options: {
-    type: Object,
-    required: true,
-  },
-
-  correctQption: {
+  options: [
+    {
+      type: String,
+      required: true,
+    },
+  ],
+  correctoption: {
     type: String,
-    required: true,
   },
 });
 

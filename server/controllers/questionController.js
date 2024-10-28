@@ -3,16 +3,15 @@ import QuestionSet from "../models/teachersModel.js";
 
 //General Question COntrollers
 const createGeneralQuestions = asyncHandler(async (req, res) => {
-  const { subject, language, topic, testType } = req.body;
-  // if (!subject || !language || topic) {
-  //   res.status(400);
-  //   throw new Error("Please add all the fields");
-  // }
+  const { subject, language, topic } = req.body;
+  if (!subject || !language || topic) {
+    res.status(400);
+    throw new Error("Please add all the fields");
+  }
   const questionSet = new QuestionSet({
     subject,
     language,
     topic,
-    testType,
     mcqs: [], // Empty initially, MCQs will be add later in UI
   });
   const savedQuestionSet = await questionSet.save();
@@ -43,9 +42,9 @@ const addMCQforGQ = asyncHandler(async (req, res) => {
 
 const getGeneralQuestions = asyncHandler(async (req, res) => {
   const allQuestions = await QuestionSet.find({});
-  if (!allQuestions) {
-    res.status(500).json({
-      message: "Server Error",
+  if (!allQuestions || allQuestions.length === 0) {
+    res.status(404).json({
+      message: "Not Found",
     });
   }
   res.status(200).json({

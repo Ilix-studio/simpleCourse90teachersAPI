@@ -12,7 +12,9 @@ import {
 } from "../controllers/questionController.js";
 const router = express.Router();
 
-// api http://localhost:5000/api/teachers/
+// http://localhost:5000/api/teachers/create-generalQuestions
+// http://localhost:5000/api/teachers/get-generalQ
+// http://localhost:5000/api/teachers/add-generalQuestions
 
 //General Question ROutes
 router.get("/get-generalQ", getGeneralQuestions);

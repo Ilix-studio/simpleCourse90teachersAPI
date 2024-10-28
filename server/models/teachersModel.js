@@ -12,7 +12,15 @@ const mcqSchema = mongoose.Schema({
     },
   ],
   correctoption: {
-    type: String,
+    type: Number,
+
+    validate: {
+      validator: function (value) {
+        // Check if correctoption is a valid index in the options array
+        return value >= 0 && value < this.options.length;
+      },
+      message: "correctoption must be a valid index of the options array",
+    },
   },
 });
 
@@ -29,11 +37,6 @@ const questionSchema = mongoose.Schema({
     type: String,
   },
   mcqs: [mcqSchema],
-  testType: {
-    type: String,
-    enum: ["general", "mock"],
-    required: true,
-  },
   createdAt: {
     type: Date,
     default: Date.now,

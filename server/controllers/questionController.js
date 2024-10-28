@@ -4,10 +4,7 @@ import QuestionSet from "../models/teachersModel.js";
 //General Question COntrollers
 const createGeneralQuestions = asyncHandler(async (req, res) => {
   const { subject, language, topic } = req.body;
-  if (!subject || !language || topic) {
-    res.status(400);
-    throw new Error("Please add all the fields");
-  }
+
   const questionSet = new QuestionSet({
     subject,
     language,

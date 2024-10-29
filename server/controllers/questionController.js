@@ -24,17 +24,25 @@ const createGeneralQuestions = asyncHandler(async (req, res) => {
   }
 });
 const addMCQforGQ = asyncHandler(async (req, res) => {
-  const { questionSetId, questionName, options, correctOption } = req.body;
+  const { questionSetId } = req.params;
+  const { questionName, options, correctOption } = req.body;
 
   const questionSet = await QuestionSet.findById(questionSetId);
-  questionSet.mcqs.push({ questionName, options, correctOption });
-  await questionSet.save();
-  res.status(200).json({ message: "MCQ added ", questionSet });
   if (!questionSet) {
-    res.status(500).json({
-      message: "Server Error",
+    res.status(404).json({
+      message: "Question set not found",
     });
   }
+  const newMCQset = { questionName, options, correctOption };
+  questionSet.mcqs.push(newMCQset);
+  await questionSet.save();
+  res
+    .status(200)
+    .json({
+      message: "MCQ added ",
+      questionSetId: questionSetId,
+      mcqs: newMCQset,
+    });
 });
 
 const getGeneralQuestions = asyncHandler(async (req, res) => {

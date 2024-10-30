@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const mcqSchema = mongoose.Schema({
+const mockMcqSchema = mongoose.Schema({
   questionName: {
     type: String,
     required: true,
@@ -13,18 +13,28 @@ const mcqSchema = mongoose.Schema({
   ],
   correctoption: {
     type: Number,
-
     validate: {
       validator: function (value) {
-        // Check if correctoption is a valid index in the options array
         return value >= 0 && value < this.options.length;
       },
       message: "correctoption must be a valid index of the options array",
     },
   },
+  duration: {
+    type: Number,
+    required: true,
+  },
+  totalMarks: {
+    type: Number,
+    required: true,
+  },
+  passingMarks: {
+    type: Number,
+    required: true,
+  },
 });
 
-const questionSchema = mongoose.Schema({
+const mockQuestionSchema = mongoose.Schema({
   subject: {
     type: String,
     required: true,
@@ -36,12 +46,12 @@ const questionSchema = mongoose.Schema({
   topic: {
     type: String,
   },
-  mcqs: [mcqSchema],
+  mcqs: [mockMcqSchema],
   createdAt: {
     type: Date,
     default: Date.now,
   },
 });
 
-const QuestionSet = mongoose.model("QuestionSet", questionSchema);
-export default QuestionSet;
+const MockQuestionSet = mongoose.model("MockQuestionSet", mockQuestionSchema);
+export default MockQuestionSet;

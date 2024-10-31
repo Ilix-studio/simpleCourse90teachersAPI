@@ -9,7 +9,7 @@ const createGeneralQuestions = asyncHandler(async (req, res) => {
     subject,
     language,
     topic,
-    mcqs: [], // Empty initially, MCQs will be add later in UI
+    mcqs: [],
   });
   const savedGQuestionSet = await generalQuestionSet.save();
   if (savedGQuestionSet) {
@@ -37,7 +37,7 @@ const addMCQforGQ = asyncHandler(async (req, res) => {
   }
   const newMCQset = { questionName, options, correctOption };
   generalQuestionSet.mcqs.push(newMCQset);
-  await GeneralQuestionSet.save();
+  await generalQuestionSet.save();
   res.status(200).json({
     message: "MCQ added ",
     generalQuestionSetId: generalQuestionSetId,

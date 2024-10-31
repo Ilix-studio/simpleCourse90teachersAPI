@@ -12,7 +12,7 @@ import {
 //General Question ROutes
 router.get("/get-generalQ", getGeneralQuestions);
 router.post("/create-generalQuestions", createGeneralQuestions);
-router.post("/add-generalQuestions/:questionSetId", addMCQforGQ);
+router.post("/add-generalQuestions/:generalQuestionSetId", addMCQforGQ);
 router.patch("/updateGQ/:id", updateGeneralQuestions);
 router.delete("/deleteGQ/:id", deleteGeneralQuestions);
 

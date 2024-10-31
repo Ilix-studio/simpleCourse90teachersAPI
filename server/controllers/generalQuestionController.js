@@ -37,7 +37,7 @@ const addMCQforGQ = asyncHandler(async (req, res) => {
   }
   const newMCQset = { questionName, options, correctOption };
   generalQuestionSet.mcqs.push(newMCQset);
-  await generalQuestionSet.save();
+  await GeneralQuestionSet.save();
   res.status(200).json({
     message: "MCQ added ",
     generalQuestionSetId: generalQuestionSetId,

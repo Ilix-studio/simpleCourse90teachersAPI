@@ -20,18 +20,6 @@ const mockMcqSchema = mongoose.Schema({
       message: "correctoption must be a valid index of the options array",
     },
   },
-  duration: {
-    type: Number,
-    required: true,
-  },
-  totalMarks: {
-    type: Number,
-    required: true,
-  },
-  passingMarks: {
-    type: Number,
-    required: true,
-  },
 });
 
 const mockQuestionSchema = mongoose.Schema({
@@ -43,8 +31,17 @@ const mockQuestionSchema = mongoose.Schema({
     type: String,
     required: true,
   },
-  topic: {
-    type: String,
+  duration: {
+    type: Number,
+    required: true,
+  },
+  totalMarks: {
+    type: Number,
+    required: true,
+  },
+  passingMarks: {
+    type: Number,
+    required: true,
   },
   mcqs: [mockMcqSchema],
   createdAt: {

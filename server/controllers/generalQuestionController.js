@@ -12,16 +12,16 @@ const createGeneralQuestions = asyncHandler(async (req, res) => {
     mcqs: [],
   });
   const savedGQuestionSet = await generalQuestionSet.save();
-  if (savedGQuestionSet) {
-    res.status(201).json({
-      message: "General Exam save successfully",
-      generalQuestionSetId: savedGQuestionSet._id,
-      data: generalQuestionSet,
-    });
-  } else {
+  if (!savedGQuestionSet) {
     res.status(404);
-    throw new Error("something is wrong");
+    throw new Error("Failed to save the data in the database");
   }
+  res.status(201).json({
+    success: true,
+    message: "General Exam save successfully",
+    generalQuestionSetId: savedGQuestionSet._id,
+    data: generalQuestionSet,
+  });
 });
 const addMCQforGQ = asyncHandler(async (req, res) => {
   const { generalQuestionSetId } = req.params;

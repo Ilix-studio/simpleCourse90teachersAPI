@@ -44,7 +44,19 @@ const addMCQforMQ = asyncHandler(async (req, res) => {
     mcqs: newMockMCQset,
   });
 });
-const getMockQuestion = asyncHandler(async (req, res) => {});
+const getMockQuestion = asyncHandler(async (req, res) => {
+  const allMQuestions = await MockQuestionSet.find({});
+  if (!allMQuestions || allMQuestions.length === 0) {
+    res.status(404).json({
+      message: "Not Found",
+    });
+  }
+  res.status(200).json({
+    message: "Fetch Successfull ",
+    data: allMQuestions,
+  });
+});
+
 const updateMockQuestion = asyncHandler(async (req, res) => {});
 const deleteMockQuestion = asyncHandler(async (req, res) => {});
 
@@ -55,3 +67,4 @@ export {
   updateMockQuestion,
   deleteMockQuestion,
 };
+// optimize this controller by improving error handling, adding validation, implementing pagination, and following best practices.
